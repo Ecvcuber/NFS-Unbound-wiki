@@ -19,97 +19,367 @@ body{
     background: linear-gradient(135deg,#0b0b0d,#15151b);
     color: var(--text);
     min-height:100vh;
+    padding-top:80px;
 }
 
-header{
-    text-align:center;
-    padding:40px 20px;
+/* ========== BARRA DE NAVEGACIÓN ========== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--panel);
+    border-bottom: 3px solid var(--yellow);
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 
-header h1{
-    color:var(--yellow);
-    font-size:3rem;
+.navbar-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    gap: 20px;
 }
 
-header p{
-    margin-top:10px;
-    color:var(--muted);
+.navbar-logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--yellow);
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
-.search-container{
-    display:flex;
-    justify-content:center;
-    margin:20px;
+.nav-menu {
+    display: flex;
+    gap: 0;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
 }
 
-#search{
-    width:min(700px,90%);
-    padding:15px 20px;
-    border:none;
-    border-radius:12px;
-    font-size:18px;
-    outline:none;
-    background:var(--panel);
-    color:white;
+.nav-link {
+    color: var(--text);
+    text-decoration: none;
+    padding: 15px 20px;
+    font-weight: 500;
+    position: relative;
+    transition: 0.3s;
+    border-bottom: 3px solid transparent;
 }
 
-#search:focus{
-    box-shadow:0 0 15px var(--cyan);
+.nav-link:hover {
+    color: var(--yellow);
+    border-bottom-color: var(--yellow);
 }
 
-#cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:20px;
-    padding:30px;
+.nav-link.active {
+    color: var(--cyan);
+    border-bottom-color: var(--cyan);
 }
 
-.card{
-    background:var(--panel);
-    border-radius:18px;
-    padding:20px;
-    transition:.25s;
-    border:2px solid transparent;
+.search-container-nav {
+    display: flex;
+    flex-shrink: 0;
 }
 
-.card:hover{
-    transform:translateY(-6px);
-    border-color:var(--yellow);
-    box-shadow:0 10px 30px rgba(0,0,0,.4);
+.search-nav {
+    width: 200px;
+    padding: 10px 15px;
+    border: 2px solid var(--cyan);
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background: var(--panel2);
+    color: var(--text);
+    transition: 0.3s;
 }
 
-.card h2{
-    color:var(--yellow);
-    margin-bottom:10px;
+.search-nav:focus {
+    box-shadow: 0 0 15px var(--cyan);
+    border-color: var(--yellow);
 }
 
-.brand{
-    color:var(--cyan);
-    font-weight:bold;
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--yellow);
+    font-size: 1.8rem;
+    cursor: pointer;
+    flex-shrink: 0;
 }
 
-.legend{
-    margin-top:10px;
-    color:#ffffff;
+/* ========== CONTENIDO PRINCIPAL ========== */
+.main-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
 }
 
-.tags{
-    margin-top:15px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
+/* ========== SECCIÓN DE ESTADÍSTICAS ========== */
+.stats-section {
+    margin-bottom: 60px;
 }
 
-.tag{
-    background:var(--panel2);
-    color:var(--cyan);
-    padding:5px 10px;
-    border-radius:20px;
-    font-size:12px;
+.stats-section h2 {
+    color: var(--yellow);
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
-footer{
-    text-align:center;
-    padding:30px;
-    color:var(--muted);
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, var(--panel2), var(--panel));
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    border: 2px solid var(--cyan);
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,229,255,0.1);
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--yellow);
+    box-shadow: 0 10px 30px rgba(255,212,0,0.2);
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: var(--yellow);
+    margin-bottom: 15px;
+}
+
+.stat-label {
+    color: var(--cyan);
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+/* ========== SECCIÓN DE VEHÍCULOS ========== */
+.vehicles-section {
+    margin-bottom: 40px;
+}
+
+.vehicles-section h2 {
+    color: var(--yellow);
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--panel);
+    border-radius: 18px;
+    padding: 20px;
+    transition: .25s;
+    border: 2px solid transparent;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: var(--yellow);
+    box-shadow: 0 10px 30px rgba(0,0,0,.4);
+}
+
+.card h2 {
+    color: var(--yellow);
+    margin-bottom: 10px;
+}
+
+.brand {
+    color: var(--cyan);
+    font-weight: bold;
+}
+
+.legend {
+    margin-top: 10px;
+    color: #ffffff;
+}
+
+.tags {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    background: var(--panel2);
+    color: var(--cyan);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* ========== SECCIONES GENERALES ========== */
+.section {
+    margin-bottom: 60px;
+    background: var(--panel);
+    border-radius: 15px;
+    padding: 40px;
+    border-left: 5px solid var(--cyan);
+}
+
+.section h2 {
+    color: var(--yellow);
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.section p {
+    color: var(--text);
+    line-height: 1.8;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+/* ========== FOOTER ========== */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--muted);
+    border-top: 2px solid var(--yellow);
+    margin-top: 60px;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* TABLET (768px y abajo) */
+@media (max-width: 768px) {
+    body {
+        padding-top: 140px;
+    }
+
+    .navbar-container {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 15px 20px;
+    }
+
+    .navbar-logo {
+        font-size: 1.4rem;
+        flex-basis: 100%;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 15px;
+    }
+
+    .nav-menu {
+        display: none;
+        flex-basis: 100%;
+        flex-direction: column;
+        gap: 0;
+        padding: 10px 0;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-link {
+        padding: 12px 20px;
+        border-bottom: 1px solid var(--panel2);
+        width: 100%;
+    }
+
+    .search-container-nav {
+        flex-basis: 100%;
+        padding-top: 10px;
+        border-top: 1px solid var(--panel2);
+    }
+
+    .search-nav {
+        width: 100%;
+    }
+
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-number {
+        font-size: 2.8rem;
+    }
+
+    #cards {
+        grid-template-columns: 1fr;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .section {
+        padding: 25px;
+    }
+}
+
+/* MÓVIL (480px y abajo) */
+@media (max-width: 480px) {
+    body {
+        padding-top: 120px;
+    }
+
+    .navbar-logo {
+        font-size: 1.2rem;
+    }
+
+    .stats-section h2,
+    .vehicles-section h2,
+    .section h2 {
+        font-size: 1.8rem;
+    }
+
+    .stat-number {
+        font-size: 2.4rem;
+    }
+
+    .stat-label {
+        font-size: 1.1rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .section {
+        padding: 20px;
+    }
+
+    .stats-section {
+        margin-bottom: 40px;
+    }
+
+    .vehicles-section {
+        margin-bottom: 30px;
+    }
 }

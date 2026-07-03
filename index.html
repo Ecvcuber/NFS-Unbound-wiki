@@ -10,20 +10,66 @@
 
 <body>
 
-<header>
-    <h1>🚗 NFS Unbound Wiki</h1>
-    <p>La enciclopedia definitiva de Need for Speed Unbound</p>
-</header>
+<!-- BARRA DE NAVEGACIÓN FIJA -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-logo">
+            <span>🚗 NFS Unbound Wiki</span>
+        </div>
 
-<section class="search-container">
-    <input
-        type="text"
-        id="search"
-        placeholder="Buscar vehículo..."
-    >
-</section>
+        <button class="menu-toggle" id="menuToggle">☰</button>
 
-<main id="cards"></main>
+        <div class="nav-menu" id="navMenu">
+            <a href="#inicio" class="nav-link active" data-section="inicio">Inicio</a>
+            <a href="#vehiculos" class="nav-link" data-section="vehiculos">Vehículos</a>
+            <a href="#marcas" class="nav-link" data-section="marcas">Marcas</a>
+            <a href="#acerca" class="nav-link" data-section="acerca">Acerca de</a>
+        </div>
+
+        <div class="search-container-nav">
+            <input
+                type="text"
+                id="search"
+                placeholder="Buscar..."
+                class="search-nav"
+            >
+        </div>
+    </div>
+</nav>
+
+<main class="main-content">
+
+    <!-- SECCIÓN DE INICIO CON ESTADÍSTICAS -->
+    <section class="stats-section" id="inicio">
+        <h2>Estadísticas</h2>
+        <div class="stats-container" id="stats"></div>
+    </section>
+
+    <!-- SECCIÓN DE VEHÍCULOS -->
+    <section class="vehicles-section" id="vehiculos">
+        <h2>Vehículos</h2>
+        <div id="cards"></div>
+    </section>
+
+    <!-- SECCIÓN DE MARCAS (PLACEHOLDER) -->
+    <section class="section" id="marcas">
+        <h2>Marcas</h2>
+        <p>Las marcas más populares en Need for Speed Unbound.</p>
+        <div id="brands-container"></div>
+    </section>
+
+    <!-- SECCIÓN ACERCA DE -->
+    <section class="section" id="acerca">
+        <h2>Acerca de</h2>
+        <p>Esta wiki contiene información detallada sobre los vehículos más icónicos de Need for Speed Unbound, incluyendo especificaciones técnicas, características únicas y versiones legendarias.</p>
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <p>&copy; 2024 NFS Unbound Wiki. Información no oficial de Need for Speed Unbound.</p>
+</footer>
 
 <script src="data/cars.js"></script>
 <script src="script.js"></script>
