@@ -4,6 +4,116 @@ const statsContainer = document.getElementById("stats");
 const navMenu = document.getElementById("navMenu");
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.querySelectorAll(".nav-link");
+const drawer = document.getElementById("drawer");
+const drawerOverlay = document.getElementById("drawerOverlay");
+const drawerClose = document.getElementById("drawerClose");
+const drawerContent = document.getElementById("drawerContent");
+
+// ========== FUNCIONES AUXILIARES PARA DRAWER ==========
+
+/**
+ * Retorna emoji/logo según la marca del vehículo
+ */
+function getBrandEmoji(brand) {
+    const brandLogos = {
+        "BMW": "🅱️",
+        "Ferrari": "🐎",
+        "Nissan": "🔴",
+        "McLaren": "🏎️",
+        "Porsche": "🏁",
+        "Ford": "🔵",
+        "Dodge": "⚡",
+        "Lamborghini": "🦂",
+        "Subaru": "⭐",
+        "Mitsubishi": "💎",
+        "Honda": "🔷",
+        "Toyota": "🟥",
+        "Audi": "⬜",
+        "Mercedes-AMG": "⭐",
+        "Bugatti": "🔴",
+        "Koenigsegg": "🌪️",
+        "Pagani": "🖤",
+        "Hennessey": "⚔️",
+        "Chevrolet": "🏁",
+        "RUF": "🏔️",
+        "Mazda": "🔴",
+        "Acura": "🟠",
+        "Jaguar": "🐆",
+        "Lamborghini": "🦂"
+    };
+    return brandLogos[brand] || "🚗";
+}
+
+/**
+ * Retorna bandera del país usando emojis Unicode
+ */
+function getCountryFlag(country) {
+    const flags = {
+        "Alemania": "🇩🇪",
+        "Italia": "🇮🇹",
+        "Japón": "🇯🇵",
+        "Reino Unido": "🇬🇧",
+        "USA": "🇺🇸",
+        "Francia": "🇫🇷",
+        "Suecia": "🇸🇪",
+        "España": "🇪🇸",
+        "Corea del Sur": "🇰🇷",
+        "Canadá": "🇨🇦"
+    };
+    return flags[country] || "🌍";
+}
+
+/**
+ * Retorna clase de color según el tipo de tag
+ */
+function getTagColor(tag) {
+    const tagColors = {
+        // Colores por palabra clave
+        "GT": "color-yellow",
+        "NFS": "color-yellow",
+        "Legend": "color-yellow",
+        "V8": "color-orange",
+        "V10": "color-orange",
+        "V12": "color-orange",
+        "Turbo": "color-orange",
+        "Supercharged": "color-orange",
+        "JDM": "color-purple",
+        "Drift": "color-purple",
+        "WRC": "color-green",
+        "AWD": "color-cyan",
+        "RWD": "color-red",
+        "FWD": "color-cyan",
+        "Fast & Furious": "color-red",
+        "Hypercar": "color-yellow",
+        "Muscle": "color-orange",
+        "Hybrid": "color-green",
+        "Le Mans": "color-green",
+        "Alemania": "color-cyan",
+        "USA": "color-red",
+        "Italia": "color-green",
+        "Japón": "color-purple"
+    };
+
+    // Buscar coincidencia parcial
+    for (const [key, color] of Object.entries(tagColors)) {
+        if (tag.includes(key) || key.includes(tag)) {
+            return color;
+        }
+    }
+    return "color-cyan"; // Color por defecto
+}
+
+/**
+ * Crea una tarjeta de información reutilizable
+ */
+function createDrawerCard(title, content, type = "general") {
+    return `
+        <div class="drawer-card ${type}">
+            <div class="drawer-card-title">${title}</div>
+            ${content}
+        </div>
+    `;
+}
 
 // ========== FUNCIONES DE ESTADÍSTICAS ==========
 function calculateStats(carList) {
@@ -36,10 +146,189 @@ function renderStats(carList) {
     `;
 }
 
+// ========== FUNCIONES DEL DRAWER ==========
+function createDrawerContent(car) {
+    const brandEmoji = getBrandEmoji(car.brand);
+    const countryFlag = getCountryFlag(car.country);
+
+    // Tarjeta de Información General
+    const generalCard = createDrawerCard(
+        "📋 Información General",
+        `
+        <div class="drawer-row">
+            <div class="drawer-item">
+                <span class="drawer-item-label">Año</span>
+                <span class="drawer-item-value highlight">${car.year}</span>
+            </div>
+            <div class="drawer-item">
+                <span class="drawer-item-label">Categoría</span>
+                <span class="drawer-item-value">${car.category}</span>
+            </div>
+        </div>
+        <div class="drawer-row">
+            <div class="drawer-item">
+                <span class="drawer-item-label">Tracción</span>
+                <span class="drawer-item-value highlight">${car.drivetrain}</span>
+            </div>
+            <div class="drawer-item">
+                <span class="drawer-item-label">País</span>
+                <span class="drawer-item-value">${countryFlag} ${car.country}</span>
+            </div>
+        </div>
+        `,
+        "general"
+    );
+
+    // Tarjeta de Motor
+    const motorCard = createDrawerCard(
+        "⚙️ Motor",
+        `
+        <div class="drawer-row full">
+            <div class="drawer-item">
+                <span class="drawer-item-label">Tipo de Potencia</span>
+                <span class="drawer-item-value highlight-yellow">${car.engine}</span>
+            </div>
+        </div>
+        <div class="drawer-row">
+            <div class="drawer-item">
+                <span class="drawer-item-label">Cilindrada</span>
+                <span class="drawer-item-value">${car.engine.split(" ")[0]}</span>
+            </div>
+        </div>
+        `,
+        "motor"
+    );
+
+    // Tarjeta de Rendimiento
+    const performanceCard = createDrawerCard(
+        "⚡ Rendimiento",
+        `
+        <div class="drawer-row">
+            <div class="drawer-item">
+                <span class="drawer-item-label">Potencia Máxima</span>
+                <span class="drawer-item-value highlight">${car.horsepower} HP</span>
+            </div>
+        </div>
+        `,
+        "performance"
+    );
+
+    // Tarjeta de Versión Legendaria
+    const legendaryCard = createDrawerCard(
+        "⭐ Versión Legendaria",
+        `
+        <div class="drawer-row full">
+            <div class="drawer-item">
+                <span class="drawer-item-label">Nombre</span>
+                <span class="drawer-item-value highlight-yellow">${car.legendary}</span>
+            </div>
+        </div>
+        `,
+        "legendary"
+    );
+
+    // Tarjeta de Apariciones
+    const appearancesCard = createDrawerCard(
+        "🎮 Apariciones",
+        `
+        <div class="drawer-row full">
+            <div class="drawer-item">
+                <span class="drawer-item-label">Conocido Por</span>
+                <span class="drawer-item-value">${car.famousFor}</span>
+            </div>
+        </div>
+        `,
+        "appearances"
+    );
+
+    // Tarjeta de Etiquetas
+    const tagsHTML = car.tags.map(tag => {
+        const color = getTagColor(tag);
+        return `<span class="drawer-tag ${color}">${tag}</span>`;
+    }).join("");
+
+    const tagCard = createDrawerCard(
+        "🏷️ Etiquetas",
+        `
+        <div class="drawer-row full">
+            <div class="drawer-tags">${tagsHTML}</div>
+        </div>
+        `,
+        "curiosities"
+    );
+
+    // Retornar estructura completa del drawer
+    return `
+        <!-- IMAGEN DEL VEHÍCULO -->
+        <div class="drawer-image">
+            <div class="drawer-image-icon">${brandEmoji}</div>
+            <div class="drawer-image-placeholder">Imagen del vehículo</div>
+        </div>
+
+        <!-- ENCABEZADO DE INFORMACIÓN -->
+        <div class="drawer-info-header">
+            <div class="drawer-title-section">
+                <span class="drawer-brand-logo">${brandEmoji}</span>
+                <div>
+                    <div class="drawer-title">${car.name}</div>
+                    <div class="drawer-brand">${car.brand}</div>
+                </div>
+            </div>
+            <div class="drawer-country">
+                <span class="drawer-country-flag">${countryFlag}</span>
+                <span>${car.country}</span>
+            </div>
+        </div>
+
+        <!-- BODY CON TARJETAS -->
+        <div class="drawer-body">
+            ${generalCard}
+            ${motorCard}
+            ${performanceCard}
+            ${legendaryCard}
+            ${appearancesCard}
+            ${tagCard}
+
+            <!-- SECCIÓN PREPARADA PARA FUTURAS EXPANSIONES -->
+            <div style="padding-top: 20px; border-top: 2px solid var(--panel2); margin-top: 20px; color: var(--muted); font-size: 0.9rem; text-align: center;">
+                <p>🔄 Próximas características:</p>
+                <p style="font-size: 0.85rem;">📸 Galería • 🎥 Videos • 📊 Especificaciones • ⚖️ Comparador</p>
+            </div>
+        </div>
+    `;
+}
+
+function openDrawer(carId) {
+    const car = cars.find(c => c.id === carId);
+    if (car) {
+        drawerContent.innerHTML = createDrawerContent(car);
+        drawer.classList.add("active");
+        drawerOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+    }
+}
+
+function closeDrawer() {
+    drawer.classList.remove("active");
+    drawerOverlay.classList.remove("active");
+    document.body.style.overflow = "auto";
+}
+
+// ========== EVENT LISTENERS DEL DRAWER ==========
+drawerClose.addEventListener("click", closeDrawer);
+drawerOverlay.addEventListener("click", closeDrawer);
+
+// Cerrar drawer con tecla Escape
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && drawer.classList.contains("active")) {
+        closeDrawer();
+    }
+});
+
 // ========== FUNCIONES DE VEHÍCULOS ==========
 function createCard(car) {
     return `
-        <div class="card">
+        <div class="card" data-car-id="${car.id}" style="cursor: pointer;">
             <h2>${car.name}</h2>
 
             <p class="brand">${car.brand}</p>
@@ -82,6 +371,14 @@ function renderCars(list) {
 
     list.forEach(car => {
         cardsContainer.innerHTML += createCard(car);
+    });
+
+    // Agregar event listeners a las tarjetas
+    document.querySelectorAll(".card[data-car-id]").forEach(card => {
+        card.addEventListener("click", () => {
+            const carId = parseInt(card.getAttribute("data-car-id"));
+            openDrawer(carId);
+        });
     });
 }
 

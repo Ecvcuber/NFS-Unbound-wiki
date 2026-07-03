@@ -262,9 +262,406 @@ footer {
     margin-top: 60px;
 }
 
-/* ========== RESPONSIVE DESIGN ========== */
+/* ========== DRAWER (PANEL LATERAL) ========== */
+.drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
 
-/* TABLET (768px y abajo) */
+.drawer-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+.drawer {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    width: 400px;
+    height: calc(100vh - 80px);
+    background: var(--panel);
+    border-left: 3px solid var(--yellow);
+    z-index: 1001;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.drawer.active {
+    transform: translateX(0);
+}
+
+.drawer-header {
+    position: sticky;
+    top: 0;
+    background: linear-gradient(135deg, var(--panel2), var(--panel));
+    z-index: 10;
+    border-bottom: 2px solid var(--yellow);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+}
+
+.drawer-close {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: var(--yellow);
+    border: none;
+    color: var(--bg);
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    z-index: 15;
+    flex-shrink: 0;
+}
+
+.drawer-close:hover {
+    background: var(--cyan);
+    transform: scale(1.1);
+}
+
+.drawer-image {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, var(--panel), var(--panel2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    border-bottom: 2px solid var(--yellow);
+    position: relative;
+}
+
+.drawer-image-icon {
+    font-size: 5rem;
+    opacity: 0.8;
+}
+
+.drawer-image-placeholder {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 0.9rem;
+    color: var(--muted);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.drawer-info-header {
+    padding: 20px;
+    background: var(--panel2);
+    border-bottom: 1px solid var(--yellow);
+}
+
+.drawer-title-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.drawer-brand-logo {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.drawer-title {
+    color: var(--yellow);
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.drawer-brand {
+    color: var(--cyan);
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+.drawer-country {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text);
+    font-size: 0.95rem;
+    margin-top: 10px;
+}
+
+.drawer-country-flag {
+    font-size: 1.5rem;
+}
+
+.drawer-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    padding-bottom: 30px;
+}
+
+/* ========== TARJETAS DE INFORMACIÓN ========== */
+.drawer-card {
+    background: var(--panel2);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--cyan);
+    transition: 0.3s;
+}
+
+.drawer-card:hover {
+    transform: translateX(-5px);
+    border-left-color: var(--yellow);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.drawer-card.general {
+    border-left-color: var(--cyan);
+}
+
+.drawer-card.motor {
+    border-left-color: #ff6b35;
+}
+
+.drawer-card.performance {
+    border-left-color: #00d9ff;
+}
+
+.drawer-card.legendary {
+    border-left-color: var(--yellow);
+}
+
+.drawer-card.appearances {
+    border-left-color: #7c3aed;
+}
+
+.drawer-card.curiosities {
+    border-left-color: #10b981;
+}
+
+.drawer-card-title {
+    color: var(--cyan);
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.drawer-card-title::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cyan);
+}
+
+.drawer-card.motor .drawer-card-title::before {
+    background: #ff6b35;
+}
+
+.drawer-card.performance .drawer-card-title::before {
+    background: #00d9ff;
+}
+
+.drawer-card.legendary .drawer-card-title::before {
+    background: var(--yellow);
+}
+
+.drawer-card.appearances .drawer-card-title::before {
+    background: #7c3aed;
+}
+
+.drawer-card.curiosities .drawer-card-title::before {
+    background: #10b981;
+}
+
+.drawer-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.drawer-row.full {
+    grid-template-columns: 1fr;
+}
+
+.drawer-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.drawer-item-label {
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.drawer-item-value {
+    color: var(--text);
+    font-size: 0.95rem;
+}
+
+.drawer-item-value.highlight {
+    color: var(--cyan);
+    font-weight: bold;
+}
+
+.drawer-item-value.highlight-yellow {
+    color: var(--yellow);
+    font-weight: bold;
+}
+
+/* ========== TAGS/BADGES ========== */
+.drawer-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.drawer-tag {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid;
+    transition: 0.2s;
+}
+
+.drawer-tag:hover {
+    transform: scale(1.05);
+}
+
+/* Colores dinámicos para tags */
+.drawer-tag.color-yellow {
+    background: rgba(255, 212, 0, 0.2);
+    color: var(--yellow);
+    border-color: var(--yellow);
+}
+
+.drawer-tag.color-cyan {
+    background: rgba(0, 229, 255, 0.2);
+    color: var(--cyan);
+    border-color: var(--cyan);
+}
+
+.drawer-tag.color-purple {
+    background: rgba(124, 58, 237, 0.2);
+    color: #a78bfa;
+    border-color: #7c3aed;
+}
+
+.drawer-tag.color-green {
+    background: rgba(16, 185, 129, 0.2);
+    color: #6ee7b7;
+    border-color: #10b981;
+}
+
+.drawer-tag.color-orange {
+    background: rgba(255, 107, 53, 0.2);
+    color: #fdba74;
+    border-color: #ff6b35;
+}
+
+.drawer-tag.color-red {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+    border-color: #ef4444;
+}
+
+/* ========== TABS/PESTAÑAS (PREPARADO PARA FUTURO) ========== */
+.drawer-tabs {
+    display: flex;
+    gap: 10px;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--panel2);
+    background: var(--panel);
+    overflow-x: auto;
+}
+
+.drawer-tab {
+    padding: 8px 16px;
+    background: var(--panel2);
+    color: var(--text);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: 0.2s;
+}
+
+.drawer-tab:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+}
+
+.drawer-tab.active {
+    background: var(--cyan);
+    color: var(--bg);
+    border-color: var(--cyan);
+}
+
+.drawer-tab-content {
+    display: none;
+}
+
+.drawer-tab-content.active {
+    display: block;
+}
+
+/* ========== RESPONSIVE DRAWER ========== */
+@media (max-width: 768px) {
+    .drawer {
+        width: 100%;
+        right: 0;
+        left: auto;
+    }
+
+    .drawer.active {
+        transform: translateX(0);
+    }
+
+    .drawer-image {
+        height: 200px;
+    }
+
+    .drawer-image-icon {
+        font-size: 4rem;
+    }
+
+    .drawer-title {
+        font-size: 1.4rem;
+    }
+}
+
+
+
+
 @media (max-width: 768px) {
     body {
         padding-top: 140px;
