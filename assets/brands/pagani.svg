@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Logo Pagani -->
+  <rect width="200" height="200" fill="#202027" rx="10"/>
+  
+  <!-- Escudo redondeado -->
+  <path d="M 100 50 L 140 75 Q 150 95 145 125 Q 100 150 55 125 Q 50 95 60 75 Z" fill="none" stroke="#ffd400" stroke-width="2"/>
+  
+  <!-- P interior -->
+  <text x="100" y="105" font-size="45" fill="#ffd400" text-anchor="middle" dominant-baseline="middle" font-weight="bold">P</text>
+  
+  <text x="100" y="175" font-size="14" fill="#ffd400" text-anchor="middle" font-weight="bold">PAGANI</text>
+</svg>

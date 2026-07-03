@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Logo Ford -->
+  <rect width="200" height="200" fill="#202027" rx="10"/>
+  
+  <!-- Óvalo Ford -->
+  <ellipse cx="100" cy="100" rx="50" ry="35" fill="none" stroke="#ffd400" stroke-width="2"/>
+  <ellipse cx="100" cy="100" rx="45" ry="30" fill="none" stroke="#00e5ff" stroke-width="1"/>
+  
+  <!-- Texto F -->
+  <text x="100" y="110" font-size="50" fill="#ffd400" text-anchor="middle" dominant-baseline="middle" font-weight="bold" font-family="serif">F</text>
+  
+  <text x="100" y="175" font-size="14" fill="#ffd400" text-anchor="middle" font-weight="bold">FORD</text>
+</svg>

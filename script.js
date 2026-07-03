@@ -12,55 +12,36 @@ const drawerContent = document.getElementById("drawerContent");
 // ========== FUNCIONES AUXILIARES PARA DRAWER ==========
 
 /**
- * Retorna emoji/logo según la marca del vehículo
+ * Retorna la ruta del logo de la marca
+ * Usa placeholder si el archivo no existe
  */
-function getBrandEmoji(brand) {
-    const brandLogos = {
-        "BMW": "🅱️",
-        "Ferrari": "🐎",
-        "Nissan": "🔴",
-        "McLaren": "🏎️",
-        "Porsche": "🏁",
-        "Ford": "🔵",
-        "Dodge": "⚡",
-        "Lamborghini": "🦂",
-        "Subaru": "⭐",
-        "Mitsubishi": "💎",
-        "Honda": "🔷",
-        "Toyota": "🟥",
-        "Audi": "⬜",
-        "Mercedes-AMG": "⭐",
-        "Bugatti": "🔴",
-        "Koenigsegg": "🌪️",
-        "Pagani": "🖤",
-        "Hennessey": "⚔️",
-        "Chevrolet": "🏁",
-        "RUF": "🏔️",
-        "Mazda": "🔴",
-        "Acura": "🟠",
-        "Jaguar": "🐆",
-        "Lamborghini": "🦂"
-    };
-    return brandLogos[brand] || "🚗";
+function getBrandLogo(brand) {
+    // Normalizar el nombre de la marca para la ruta del archivo
+    const brandFileName = brand.replace(/\s+/g, "-").toLowerCase();
+    const logoPath = `assets/brands/${brandFileName}.svg`;
+    const placeholderPath = `assets/ui/placeholder-logo.svg`;
+    
+    return { logoPath, placeholderPath };
 }
 
 /**
- * Retorna bandera del país usando emojis Unicode
+ * Retorna la ruta de la bandera del país
+ * Usa placeholder si el archivo no existe
  */
 function getCountryFlag(country) {
-    const flags = {
-        "Alemania": "🇩🇪",
-        "Italia": "🇮🇹",
-        "Japón": "🇯🇵",
-        "Reino Unido": "🇬🇧",
-        "USA": "🇺🇸",
-        "Francia": "🇫🇷",
-        "Suecia": "🇸🇪",
-        "España": "🇪🇸",
-        "Corea del Sur": "🇰🇷",
-        "Canadá": "🇨🇦"
-    };
-    return flags[country] || "🌍";
+    // Normalizar el nombre del país para la ruta del archivo
+    const countryFileName = country.replace(/\s+/g, "-").toLowerCase();
+    const flagPath = `assets/flags/${countryFileName}.svg`;
+    const placeholderPath = `assets/ui/placeholder-flag.svg`;
+    
+    return { flagPath, placeholderPath };
+}
+
+/**
+ * Crea un elemento <img> con fallback a placeholder
+ */
+function createImageElement(primaryPath, fallbackPath, altText, className = "") {
+    return `<img src="${primaryPath}" alt="${altText}" class="${className}" onerror="this.src='${fallbackPath}'" />`;
 }
 
 /**
@@ -148,8 +129,8 @@ function renderStats(carList) {
 
 // ========== FUNCIONES DEL DRAWER ==========
 function createDrawerContent(car) {
-    const brandEmoji = getBrandEmoji(car.brand);
-    const countryFlag = getCountryFlag(car.country);
+    const { logoPath, placeholderPath: logoPH } = getBrandLogo(car.brand);
+    const { flagPath, placeholderPath: flagPH } = getCountryFlag(car.country);
 
     // Tarjeta de Información General
     const generalCard = createDrawerCard(
@@ -172,7 +153,7 @@ function createDrawerContent(car) {
             </div>
             <div class="drawer-item">
                 <span class="drawer-item-label">País</span>
-                <span class="drawer-item-value">${countryFlag} ${car.country}</span>
+                <span class="drawer-item-value">${car.country}</span>
             </div>
         </div>
         `,
@@ -261,21 +242,25 @@ function createDrawerContent(car) {
     return `
         <!-- IMAGEN DEL VEHÍCULO -->
         <div class="drawer-image">
-            <div class="drawer-image-icon">${brandEmoji}</div>
+            <div class="drawer-image-icon">${createImageElement(logoPath, logoPH, car.brand, "drawer-logo-image")}</div>
             <div class="drawer-image-placeholder">Imagen del vehículo</div>
         </div>
 
         <!-- ENCABEZADO DE INFORMACIÓN -->
         <div class="drawer-info-header">
             <div class="drawer-title-section">
-                <span class="drawer-brand-logo">${brandEmoji}</span>
+                <div class="drawer-brand-logo">
+                    ${createImageElement(logoPath, logoPH, car.brand, "drawer-header-logo")}
+                </div>
                 <div>
                     <div class="drawer-title">${car.name}</div>
                     <div class="drawer-brand">${car.brand}</div>
                 </div>
             </div>
             <div class="drawer-country">
-                <span class="drawer-country-flag">${countryFlag}</span>
+                <span class="drawer-country-flag">
+                    ${createImageElement(flagPath, flagPH, car.country, "drawer-flag-image")}
+                </span>
                 <span>${car.country}</span>
             </div>
         </div>

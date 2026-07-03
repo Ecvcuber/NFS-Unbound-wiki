@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Logo Honda -->
+  <rect width="200" height="200" fill="#202027" rx="10"/>
+  
+  <!-- H Honda -->
+  <path d="M 70 70 L 70 120 M 70 95 L 130 95 M 130 70 L 130 120" stroke="#ffd400" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Rectángulo -->
+  <rect x="55" y="55" width="90" height="90" fill="none" stroke="#00e5ff" stroke-width="2" rx="5"/>
+  
+  <text x="100" y="175" font-size="14" fill="#ffd400" text-anchor="middle" font-weight="bold">HONDA</text>
+</svg>

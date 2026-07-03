@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Logo Jaguar -->
+  <rect width="200" height="200" fill="#202027" rx="10"/>
+  
+  <!-- Escudo jaguar -->
+  <path d="M 100 50 L 140 80 Q 145 100 140 125 Q 100 145 60 125 Q 55 100 60 80 Z" fill="none" stroke="#ffd400" stroke-width="2"/>
+  
+  <!-- Cabeza de jaguar estilizada -->
+  <circle cx="100" cy="85" r="8" fill="#00e5ff"/>
+  <polygon points="95,95 100,105 105,95" fill="#ffd400"/>
+  
+  <text x="100" y="175" font-size="14" fill="#ffd400" text-anchor="middle" font-weight="bold">JAGUAR</text>
+</svg>

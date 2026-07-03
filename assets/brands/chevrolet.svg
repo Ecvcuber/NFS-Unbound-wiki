@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Logo Chevrolet -->
+  <rect width="200" height="200" fill="#202027" rx="10"/>
+  
+  <!-- Cruz Chevrolet -->
+  <rect x="70" y="75" width="60" height="20" fill="#ffd400"/>
+  <rect x="85" y="60" width="30" height="50" fill="#ffd400"/>
+  
+  <!-- Decoración -->
+  <circle cx="100" cy="100" r="60" fill="none" stroke="#00e5ff" stroke-width="2"/>
+  
+  <text x="100" y="175" font-size="12" fill="#ffd400" text-anchor="middle" font-weight="bold">CHEVROLET</text>
+</svg>

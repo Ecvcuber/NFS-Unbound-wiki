@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200">
+  <!-- Fondo -->
+  <rect width="300" height="200" fill="#0b0b0d" rx="5"/>
+  
+  <!-- Borde -->
+  <rect x="5" y="5" width="290" height="190" fill="none" stroke="#ffd400" stroke-width="2" rx="3"/>
+  
+  <!-- Tres franjas genéricas -->
+  <rect x="15" y="15" width="270" height="55" fill="#00e5ff" opacity="0.8"/>
+  <rect x="15" y="70" width="270" height="55" fill="#ffd400" opacity="0.8"/>
+  <rect x="15" y="125" width="270" height="60" fill="#a8a8b3" opacity="0.8"/>
+  
+  <!-- Símbolo de interrogación -->
+  <text x="150" y="105" font-size="60" font-weight="bold" fill="#0b0b0d" text-anchor="middle" dominant-baseline="middle" opacity="0.5">?</text>
+</svg>

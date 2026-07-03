@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Logo Lamborghini -->
+  <rect width="200" height="200" fill="#202027" rx="10"/>
+  
+  <!-- Escudo hexagonal -->
+  <polygon points="100,45 140,70 140,120 100,145 60,120 60,70" fill="none" stroke="#ffd400" stroke-width="2"/>
+  
+  <!-- Toro (cuernos y cabeza) -->
+  <path d="M 85 85 Q 80 75 75 75 M 115 85 Q 120 75 125 75" stroke="#00e5ff" stroke-width="2" fill="none"/>
+  <circle cx="100" cy="90" r="6" fill="#ffd400"/>
+  
+  <text x="100" y="175" font-size="12" fill="#ffd400" text-anchor="middle" font-weight="bold">LAMBORGHINI</text>
+</svg>

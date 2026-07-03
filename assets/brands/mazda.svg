@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Logo Mazda -->
+  <rect width="200" height="200" fill="#202027" rx="10"/>
+  
+  <!-- Óvalo Mazda -->
+  <ellipse cx="100" cy="95" rx="35" ry="28" fill="none" stroke="#ffd400" stroke-width="2"/>
+  
+  <!-- Alas -->
+  <path d="M 70 85 Q 65 95 70 105" fill="none" stroke="#00e5ff" stroke-width="2"/>
+  <path d="M 130 85 Q 135 95 130 105" fill="none" stroke="#ffd400" stroke-width="2"/>
+  
+  <text x="100" y="175" font-size="14" fill="#ffd400" text-anchor="middle" font-weight="bold">MAZDA</text>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Logo Toyota -->
+  <rect width="200" height="200" fill="#202027" rx="10"/>
+  
+  <!-- Óvalos Toyota -->
+  <ellipse cx="100" cy="85" rx="25" ry="18" fill="none" stroke="#ffd400" stroke-width="2"/>
+  <ellipse cx="85" cy="105" rx="20" ry="25" fill="none" stroke="#00e5ff" stroke-width="2"/>
+  <ellipse cx="115" cy="105" rx="20" ry="25" fill="none" stroke="#ffd400" stroke-width="2"/>
+  
+  <text x="100" y="175" font-size="14" fill="#ffd400" text-anchor="middle" font-weight="bold">TOYOTA</text>
+</svg>

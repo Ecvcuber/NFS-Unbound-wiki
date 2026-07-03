@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200">
+  <!-- Bandera USA -->
+  <rect width="300" height="200" fill="#b22234"/>
+  <rect width="300" height="14.3" y="14.3" fill="#fff"/>
+  <rect width="300" height="14.3" y="42.8" fill="#fff"/>
+  <rect width="300" height="14.3" y="71.4" fill="#fff"/>
+  <rect width="300" height="14.3" y="100" fill="#fff"/>
+  <rect width="300" height="14.3" y="128.6" fill="#fff"/>
+  <rect width="300" height="14.3" y="157.1" fill="#fff"/>
+  <rect width="120" height="105.7" fill="#3c3b6b"/>
+</svg>

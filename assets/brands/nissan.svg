@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Logo Nissan -->
+  <rect width="200" height="200" fill="#202027" rx="10"/>
+  
+  <!-- Cuadrado Nissan -->
+  <rect x="55" y="60" width="90" height="80" fill="none" stroke="#ffd400" stroke-width="2" rx="5"/>
+  
+  <!-- Punto de Nissan -->
+  <circle cx="100" cy="100" r="20" fill="#00e5ff"/>
+  <circle cx="100" cy="100" r="12" fill="none" stroke="#ffd400" stroke-width="2"/>
+  
+  <text x="100" y="175" font-size="14" fill="#ffd400" text-anchor="middle" font-weight="bold">NISSAN</text>
+</svg>
